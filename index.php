@@ -23,6 +23,8 @@ if(isset($_SESSION['login'])) {
 switch ($pagina) {
     case 'pessoas': include 'views/pessoas.php'; break;
     case 'inserir_pessoa': include 'views/inserir_pessoa.php'; break;
+    case 'competencias': include 'views/competencias.php'; break;
+    case 'inserir_competencia': include 'views/inserir_competencia.php'; break;
 
     default: include 'views/home.php'; break;
 }

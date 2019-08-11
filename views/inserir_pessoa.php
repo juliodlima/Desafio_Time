@@ -3,7 +3,7 @@
     <h3>Inserir Pessoa</h3>
     <form method="post" action="processa_pessoa.php">
         <label class="badge badge-secondary">Nome da Pessoa:</label><br>
-        <input class="form-control col-md-10" type="text" name="nome" placeholder="Insira o Nome da Pessoa">
+        <input class="form-control col-md-10" type="text" name="nome_pessoa" placeholder="Insira o Nome da Pessoa">
         <br>
         <label class="badge badge-secondary">Data de Nascimento:</label><br>
         <input class="form-control col-md-5" type="date" name="data_nascimento" placeholder="Insira a Data de Nascimento">
@@ -21,11 +21,21 @@
         <input class="form-control col-md-5" type="text" name="celular" placeholder="Insira o número do Celular">
         <br>
         <label class="badge badge-secondary">Competências Comportamentais:</label><br>
-        <input class="form-control col-md-10" type="text" name="comp_comportamental" placeholder="Insira as Competências Comportamentais">
-        <br>
+        <?php while($linha2 = mysqli_fetch_array($consulta_comp_comportamentais)){ ?>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="comp_comportamentais[]" id="comp_comportamentais<?php echo $linha2['id_competencia']; ?>" value="<?php echo $linha2['id_competencia']; ?>">
+                <label class="form-check-label" for="comp_comportamentais<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+            </div>
+        <?php } ?>
+        <br><br>
         <label class="badge badge-secondary">Competências Técnicas:</label><br>
-        <input class="form-control col-md-10" type="text" name="comp_comportamental" placeholder="Insira as Competências Técnicas">
-        <br>
+        <?php while($linha2 = mysqli_fetch_array($consulta_comp_tecnicas)){ ?>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="comp_tecnicas[]" id="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"  value="<?php echo $linha2['id_competencia']; ?>">
+                <label class="form-check-label" for="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+            </div>
+        <?php } ?>
+        <br><br>
         <input class="btn btn-success" type="submit" value="Inserir Pessoa">
     </form>
 
@@ -36,7 +46,7 @@
         <form method="post" action="edita_pessoa.php">
             <input type="hidden" name="id_pessoa" value="<?php echo $linha['id_pessoa']; ?>">
             <label class="badge badge-secondary">Nome Pessoa:</label><br>
-            <input class="form-control col-md-10" type="text" name="nome" placeholder="Insira o Nome da Pessoa" value="<?php echo $linha['nome']; ?>">
+            <input class="form-control col-md-10" type="text" name="nome_pessoa" placeholder="Insira o Nome da Pessoa" value="<?php echo $linha['nome_pessoa']; ?>">
             <br>
             <label class="badge badge-secondary">Data de Nascimento:</label><br>
             <input class="form-control col-md-5" type="date" name="data_nascimento" placeholder="Insira a Data de Nascimento" value="<?php echo $linha['data_nascimento']; ?>">
@@ -54,11 +64,35 @@
             <input class="form-control col-md-5" type="text" name="celular" placeholder="Insira o número do Celular" value="<?php echo $linha['celular']; ?>">
             <br>
             <label class="badge badge-secondary">Competências Comportamentais:</label><br>
-            <input class="form-control col-md-10" type="text" name="comp_comportamentais" placeholder="Insira as Competências Comportamentais" value="<?php echo $linha['comp_comportamentais']; ?>">
-            <br>
+            <?php while($linha2 = mysqli_fetch_array($consulta_comp_comportamentais)){ ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="comp_comportamentais[]" id="comp_comportamentais<?php echo $linha2['id_competencia']; ?>" value="<?php echo $linha2['id_competencia']; ?>"
+                    <?php 
+                        $id_pessoa = $linha['id_pessoa'];
+                        $id_competencia = $linha2['id_competencia'];
+                        $query = "SELECT * FROM pessoa_competencia WHERE id_pessoa = $id_pessoa AND id_competencia = $id_competencia";
+                        $consulta_pessoa_competencia = mysqli_query($conexao, $query);
+                        if(mysqli_num_rows($consulta_pessoa_competencia) == 1) echo'checked';
+                    ?>>
+                    <label class="form-check-label" for="comp_comportamentais<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+                </div>
+            <?php } ?>
+            <br><br>
             <label class="badge badge-secondary">Competências Técnicas:</label><br>
-            <input class="form-control col-md-10" type="text" name="comp_tecnicas" placeholder="Insira as Competências Técnicas" value="<?php echo $linha['comp_tecnicas']; ?>">
-            <br>
+            <?php while($linha2 = mysqli_fetch_array($consulta_comp_tecnicas)){ ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="comp_tecnicas[]" id="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"  value="<?php echo $linha2['id_competencia']; ?>"
+                    <?php 
+                        $id_pessoa = $linha['id_pessoa'];
+                        $id_competencia = $linha2['id_competencia'];
+                        $query = "SELECT * FROM pessoa_competencia WHERE id_pessoa = $id_pessoa AND id_competencia = $id_competencia";
+                        $consulta_pessoa_competencia = mysqli_query($conexao, $query);
+                        if(mysqli_num_rows($consulta_pessoa_competencia) == 1) echo'checked';
+                    ?>>
+                    <label class="form-check-label" for="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+                </div>
+            <?php } ?>
+            <br><br>
             <input class="btn btn-success" type="submit" value="Editar Pessoa">
         </form>
         <?php } ?>
@@ -70,7 +104,7 @@
         <form method="post" action="visualizar_pessoa_pdf.php">
             <input type="hidden" name="id_pessoa" value="<?php echo $linha['id_pessoa']; ?>">
             <label class="badge badge-secondary">Nome Pessoa:</label><br>
-            <input class="form-control col-md-10" type="text" name="nome" placeholder="Insira o Nome da Pessoa" value="<?php echo $linha['nome']; ?>" disabled>
+            <input class="form-control col-md-10" type="text" name="nome_pessoa" placeholder="Insira o Nome da Pessoa" value="<?php echo $linha['nome_pessoa']; ?>" disabled>
             <br>
             <label class="badge badge-secondary">Data de Nascimento:</label><br>
             <input class="form-control col-md-5" type="date" name="data_nascimento" placeholder="Insira a Data de Nascimento" value="<?php echo $linha['data_nascimento']; ?>" disabled>

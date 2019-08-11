@@ -10,6 +10,7 @@
     <script>
         $(document).ready( function () {
             $('#pessoas').DataTable();
+            $('#competencias').DataTable();
         } );
     </script>
 

@@ -16,8 +16,8 @@
     <tbody>
         <?php
             while ($linha = mysqli_fetch_array($consulta_pessoas)) {
-                echo '<tr><td>'.$linha['nome'].'</td>';
-                echo '<td>'.$linha['data_nascimento'].'</td>';
+                echo '<tr><td>'.$linha['nome_pessoa'].'</td>';
+                echo '<td>'.date('d/m/Y',strtotime($linha['data_nascimento'])).'</td>';
                 echo '<td>'.$linha['idade'].'</td>';
                 echo '<td>'.$linha['endereco'].'</td>';
                 echo '<td>'.$linha['telefone'].'</td>';
@@ -35,7 +35,7 @@
             </a></td>
             <td><a href="?pagina=inserir_pessoa&visualizar=<?php echo $linha['id_pessoa']; ?>">
                 <span style="color: #44b874;">
-                    <i class="fas fa-user-times"></i>
+                    <i class="fas fa-user-check"></i>
                 </span>
             </a></td></tr>
         <?php    

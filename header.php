@@ -15,6 +15,7 @@
             <a href="?pagina=home"><img src="img/logo_.jpg" title="Logo" alt="Logo"></a>
             <div id="menu">
                 <a href="?pagina=pessoas">Pessoas</a>
+                <a href="?pagina=competencias">Competências</a>
                 <?php if(isset($_SESSION['login'])) { ?> 
                     <a href="logout.php"><?php echo $_SESSION['usuario']; ?> (Sair)</a>
                 <?php } ?>
