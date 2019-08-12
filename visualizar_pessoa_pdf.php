@@ -14,6 +14,7 @@ $idade = $linha['idade'];
 $endereco = $linha['endereco'];
 $telefone = $linha['telefone'];
 $celular = $linha['celular'];
+$data_inscricao = date('d/m/Y',strtotime($linha['data_inscricao']));
 
 $query = "SELECT c.nome, c.tipo FROM competencias c JOIN pessoa_competencia pc ON (c.id_competencia = pc.id_competencia) WHERE pc.id_pessoa = $id_pessoa";
 $busca_pessoa_competencia = mysqli_query($conexao, $query);
@@ -27,8 +28,6 @@ while($linha = mysqli_fetch_array($busca_pessoa_competencia)){
         $campo_tecnicas.= $linha['nome'].',';
     }
 }
-
-$data_inscricao = date('d/m/Y',strtotime($linha['data_inscricao']));
 
 date_default_timezone_set('America/Sao_Paulo');
 $date = date('d/m/Y H:i');
