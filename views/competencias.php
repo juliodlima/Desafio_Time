@@ -6,6 +6,7 @@
             <th>Tipo</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,12 +18,17 @@
         ?>
             <td><a href="?pagina=inserir_competencia&editar=<?php echo $linha['id_competencia']; ?>">
                 <span style="color: #44b874;">
-                    <i class="fas fa-user-edit"></i>
+                    <i class="fas fa-edit"></i>
                 </span>
             </a></td>
             <td><a href="deleta_competencia.php?id_competencia=<?php echo $linha['id_competencia']; ?>">
                 <span style="color: #44b874;">
-                    <i class="fas fa-user-times"></i>
+                    <i class="fas fa-times"></i>
+                </span>
+            </a></td>
+            <td><a href="?pagina=inserir_competencia&visualizar=<?php echo $linha['id_competencia']; ?>">
+                <span style="color: #44b874;">
+                    <i class="fas fa-check"></i>
                 </span>
             </a></td></tr>
         <?php    

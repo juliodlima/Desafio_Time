@@ -1,4 +1,4 @@
-<?php if(!isset($_GET['editar'])){ ?>
+<?php if(!isset($_GET['editar']) && !isset($_GET['visualizar'])){ ?>
 
     <h3>Inserir Competência</h3>
     <form method="post" action="processa_competencia.php">
@@ -18,7 +18,8 @@
         <input class="btn btn-success" type="submit" value="Inserir Competência">
     </form>
 
-<?php } else { ?>
+<?php } else if(isset($_GET['editar'])) { ?>
+
     <?php while($linha = mysqli_fetch_array($consulta_competencias)){ ?>
         <?php if($linha['id_competencia'] == $_GET['editar']){ ?>
         <h1>Editar Competência</h1>
@@ -41,4 +42,29 @@
         </form>
         <?php } ?>
     <?php } ?>
+
+<?php } else if(isset($_GET['visualizar'])) { ?>
+
+    <?php while($linha = mysqli_fetch_array($consulta_competencias)){ ?>
+        <?php if($linha['id_competencia'] == $_GET['visualizar']){ ?>
+        <h1>Visualizar Competência</h1>
+        <form method="post" action="?pagina=competencias">
+            <label class="badge badge-secondary">Nome da Competência:</label><br>
+            <input class="form-control col-md-10" type="text" name="nome" placeholder="Insira o Nome da Competência" value="<?php echo $linha['nome']; ?> " disabled>
+            <br><br>
+            <label class="badge badge-secondary">Tipo da Competência:</label><br>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" type="radio" name="tipo" id="comportamental" <?php if($linha['tipo']=='Comportamental') echo'checked' ?> value="Comportamental" disabled>
+                <label class="custom-control-label" for="comportamental">Comportamental</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" type="radio" name="tipo" id="tecnica"<?php if($linha['tipo']=='Técnica') echo'checked' ?> value="Tecnica" disabled>
+                <label class="custom-control-label" for="tecnica">Técnica</label>
+            </div>
+            <br><br>
+            <input class="btn btn-success" type="submit" value="Voltar">
+        </form>
+        <?php } ?>
+    <?php } ?>
+
 <?php } ?>

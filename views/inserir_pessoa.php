@@ -40,6 +40,7 @@
     </form>
 
 <?php } else if(isset($_GET['editar'])) { ?>
+
     <?php while($linha = mysqli_fetch_array($consulta_pessoas)){ ?>
         <?php if($linha['id_pessoa'] == $_GET['editar']){ ?>
         <h1>Editar Pessoa</h1>
@@ -97,7 +98,9 @@
         </form>
         <?php } ?>
     <?php } ?>
+
 <?php } else if(isset($_GET['visualizar'])) { ?>
+
     <?php while($linha = mysqli_fetch_array($consulta_pessoas)){ ?>
         <?php if($linha['id_pessoa'] == $_GET['visualizar']){ ?>
         <h1>Visualizar Pessoa</h1>
@@ -122,11 +125,35 @@
             <input class="form-control col-md-5" type="text" name="celular" placeholder="Insira o número do Celular" value="<?php echo $linha['celular']; ?>" disabled>
             <br>
             <label class="badge badge-secondary">Competências Comportamentais:</label><br>
-            <input class="form-control col-md-10" type="text" name="comp_comportamentais" placeholder="Insira as Competências Comportamentais" value="<?php echo $linha['comp_comportamentais']; ?>" disabled>
-            <br>
+            <?php while($linha2 = mysqli_fetch_array($consulta_comp_comportamentais)){ ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="comp_comportamentais[]" id="comp_comportamentais<?php echo $linha2['id_competencia']; ?>" value="<?php echo $linha2['id_competencia']; ?>"
+                    <?php 
+                        $id_pessoa = $linha['id_pessoa'];
+                        $id_competencia = $linha2['id_competencia'];
+                        $query = "SELECT * FROM pessoa_competencia WHERE id_pessoa = $id_pessoa AND id_competencia = $id_competencia";
+                        $consulta_pessoa_competencia = mysqli_query($conexao, $query);
+                        if(mysqli_num_rows($consulta_pessoa_competencia) == 1) echo'checked';
+                    ?> disabled>
+                    <label class="form-check-label" for="comp_comportamentais<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+                </div>
+            <?php } ?>
+            <br><br>
             <label class="badge badge-secondary">Competências Técnicas:</label><br>
-            <input class="form-control col-md-10" type="text" name="comp_tecnicas" placeholder="Insira as Competências Técnicas" value="<?php echo $linha['comp_tecnicas']; ?>" disabled>
-            <br>
+            <?php while($linha2 = mysqli_fetch_array($consulta_comp_tecnicas)){ ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="comp_tecnicas[]" id="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"  value="<?php echo $linha2['id_competencia']; ?>"
+                    <?php 
+                        $id_pessoa = $linha['id_pessoa'];
+                        $id_competencia = $linha2['id_competencia'];
+                        $query = "SELECT * FROM pessoa_competencia WHERE id_pessoa = $id_pessoa AND id_competencia = $id_competencia";
+                        $consulta_pessoa_competencia = mysqli_query($conexao, $query);
+                        if(mysqli_num_rows($consulta_pessoa_competencia) == 1) echo'checked';
+                    ?> disabled>
+                    <label class="form-check-label" for="comp_tecnicas<?php echo $linha2['id_competencia']; ?>"><?php echo $linha2['nome']; ?></label>
+                </div>
+            <?php } ?>
+            <br><br>
             <input class="btn btn-success" type="submit" value="Visualizar PDF" target="_blank">
         </form>
         <?php } ?>
