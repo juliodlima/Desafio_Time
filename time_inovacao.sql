@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 12-Ago-2019 às 16:32
+-- Tempo de geração: 13-Ago-2019 às 02:08
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.7
 
@@ -79,17 +79,18 @@ CREATE TABLE `pessoas` (
 --
 
 INSERT INTO `pessoas` (`id_pessoa`, `nome_pessoa`, `data_nascimento`, `idade`, `endereco`, `telefone`, `celular`, `data_inscricao`) VALUES
-(1, 'JosÃ© Henrique Lima', '1975-05-02', '44 anos', 'Rua da AurilÃ¢ndia, 578 - bairro Matadouro - Nova Lima', '031 34157886', '031 956568787', '2019-08-01'),
+(1, 'JosÃ© Henrique Lima', '1975-05-02', '44 anos', 'Rua da AurilÃ¢ndia, 578 - bairro Matadouro - Nova Lima', '031 34157886', '031 956568787', '2019-08-12'),
 (2, 'JoÃ£o Henrique', '1995-07-31', '20 anos', 'Rua do Bicalho, 45 - bairro Cristais - Nova Lima', '031 955663247', '031 988565652', '2019-08-02'),
-(3, 'Sandra Maria CÃ©zar ', '1955-11-29', '64 anos', 'Rua Augusto dos Anjos, 1555 - EdifÃ­cio Skorpius - Bairro SÃ£o JoÃ£o Batista - Belo Horizonte - MG', '031 34255566', '031 985852323', '2019-08-03'),
+(3, 'Sandra Maria CÃ©zar ', '1955-11-29', '64 anos', 'Rua Augusto dos Anjos, 1555 - EdifÃ­cio Skorpius - Bairro SÃ£o JoÃ£o Batista - Belo Horizonte - MG', '031 34255566', '031 985852323', '2019-08-12'),
 (4, 'JÃºlia CÃ©zar Lima', '2013-06-15', '6 anos', 'Rua Guapira, 267 - Bairro Ipanema - Belo Horizonte - MG', '031 34166565', '031 987875454', '2019-08-04'),
-(5, 'Carolina Fernanda Cezar', '1983-06-09', '31 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04 - Bairro Santa Monica', '31988049655', '31988049655', '2019-08-11'),
-(7, 'JosÃ© Saturnino de Lima', '1934-11-29', '84 anos', 'Rua Guararapes, 547 - Bairro GlÃ³ria - Belo Horizonte - MG', '031 41234556', '031 984845657', '2019-08-06'),
+(7, 'JosÃ© Saturnino de Lima', '1934-11-29', '84 anos', 'Rua Guararapes, 547 - Bairro GlÃ³ria - Belo Horizonte - MG', '031 41234556', '031 984845657', '2019-08-12'),
 (9, 'JULIO CESAR DE LIMA lima', '1995-08-17', '44 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '2019-08-11'),
-(10, 'JULIO DE LIMA lima lima', '2000-07-21', '20 anos', 'Rua dos Crenaques, 435', '31988049655', '31988049655', '0000-00-00'),
 (11, 'JULIO CESAR DE LIMA', '2000-01-01', '30 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '0000-00-00'),
-(12, 'TESTE FINAL PARA IR DORMIR', '2000-02-01', '44 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '0000-00-00'),
-(13, 'JULIO DE LIMA CESAR', '2000-03-03', '30 anos', 'Rua dos Crenaques, 435', '31988049655', '31988049655', '2019-08-11');
+(12, 'TESTE FINAL API', '2000-02-01', '44 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '0000-00-00'),
+(13, 'JULIO DE LIMA CESAR', '2000-03-03', '30 anos', 'Rua dos Crenaques, 435', '31988049655', '31988049655', '2019-08-11'),
+(14, 'Carolina Fernanda CEZAR Lima', '1983-06-09', '31 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04 - Bairro Santa Monica', '31988049655', '31988049655', '2019-08-12'),
+(15, 'TESTE FINAL API INSERT', '2000-02-01', '44 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '0000-00-00'),
+(16, 'TESTE FINAL API UPDATE ', '2000-02-01', '44 anos', 'Rua dos Crenaques 435, Ap.202 - Bl.04', '31988049655', '31988049655', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -108,9 +109,6 @@ CREATE TABLE `pessoa_competencia` (
 --
 
 INSERT INTO `pessoa_competencia` (`id_pessoa_competencia`, `id_pessoa`, `id_competencia`) VALUES
-(20, 5, 7),
-(21, 5, 9),
-(22, 5, 16),
 (23, 9, 13),
 (24, 9, 18),
 (25, 11, 2),
@@ -135,7 +133,30 @@ INSERT INTO `pessoa_competencia` (`id_pessoa_competencia`, `id_pessoa`, `id_comp
 (61, 13, 14),
 (62, 13, 15),
 (63, 13, 16),
-(64, 13, 17);
+(64, 13, 17),
+(65, 5, 7),
+(66, 5, 9),
+(67, 5, 16),
+(68, 14, 2),
+(69, 14, 3),
+(70, 14, 4),
+(71, 14, 14),
+(72, 14, 15),
+(73, 1, 2),
+(74, 1, 10),
+(75, 1, 14),
+(76, 1, 18),
+(77, 7, 10),
+(78, 7, 11),
+(79, 7, 12),
+(80, 7, 13),
+(81, 7, 17),
+(82, 7, 18),
+(83, 3, 5),
+(84, 3, 6),
+(85, 3, 7),
+(86, 3, 15),
+(87, 3, 16);
 
 -- --------------------------------------------------------
 
@@ -199,13 +220,13 @@ ALTER TABLE `competencias`
 -- AUTO_INCREMENT de tabela `pessoas`
 --
 ALTER TABLE `pessoas`
-  MODIFY `id_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `pessoa_competencia`
 --
 ALTER TABLE `pessoa_competencia`
-  MODIFY `id_pessoa_competencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_pessoa_competencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
